@@ -24,16 +24,21 @@ def main():
     try:
         while True:
             cis = input("Zadej číslo: ")
+            if cis == "":
+                if len(sekvence) == 0:
+                    print("Vstupní posloupnost je prázdná.")
+                break
             sekvence.append(int(cis))
+            print("Číslo", cis, "bylo úspěšně přijato.")
     except EOFError:
         pass
-    if len(sekvence) == 0:
-        print("Vstupní posloupnost je prázdná.")
-        return
-    elif len(sekvence) > 2000:
+    if len(sekvence) > 2000:
         print("Vstupní posloupnost je příliš dlouhá (přes 2000 čísel).")
         return
     intervaly = find(sekvence)
+    if len(intervaly) == 0:
+        print("Vstupní posloupnost je prázdná.")
+        return
     rovno = cnt_rovno(intervaly)
     print("Počet nalezených dvojic intervalů se stejným součtem:", len(rovno))
 
